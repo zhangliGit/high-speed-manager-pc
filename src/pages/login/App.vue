@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
-      <keep-alive include="">
-        <router-view  class="Router co-Page co-flex co-cl-1" />
-      </keep-alive>
-    </transition>
+    我是二级界面
   </div>
 </template>
 
@@ -13,18 +9,6 @@ export default {
   name: 'App',
   data () {
     return {
-      transitionName: 'slide-right'
-    }
-  },
-  watch: {
-    $route (to, from) {
-      let isBack = this.$router.isBack
-      if (isBack) {
-        this.transitionName = 'slide-right'
-      } else {
-        this.transitionName = 'slide-left'
-      }
-      this.$router.isBack = false
     }
   },
   mounted () {
@@ -32,18 +16,52 @@ export default {
 }
 </script>
 
-<style>
-.Router {
-  transition: all .2s ease-in-out;
+<style lang="less">
+#app {
+  color: #333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
-.slide-left-enter,
-.slide-right-leave-to {
-  -webkit-transform: translate(100%, 0);
-  transform: translate(100%, 0);
+.side-left {
+  padding-left: 60px;
 }
-.slide-right-enter,
-.slide-left-leave-to {
-  -webkit-transform: translate(-100%, 0);
-  transform: translate(-100% 0);
+.text-tip {
+  padding: 15px 0
+}
+.text-tip-indent {
+  padding-top: 20px;
+  text-indent: 30px;
+}
+.co-ui {
+  font-size:40px;
+  padding: 30px 0 50px 0;
+}
+.tab-ul {
+  li {
+    margin-top: 30px;
+    width: 130px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px #eee solid;
+    margin-right: 30px;
+    border-radius: 60px;
+    cursor: pointer;
+    &:hover {
+      background: #2d8cf0;
+      color:#fff;
+    }
+  }
+  .active {
+    background: #2d8cf0;
+    color: #fff;
+  }
 }
 </style>

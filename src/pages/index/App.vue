@@ -33,7 +33,7 @@
       </div>
       <div>
         <ul class="co-flex co-ac tab-ul">
-          <li class="active">开始使用</li>
+          <li class="active" @click="goLogin">开始使用</li>
           <li>扫描体验</li>
           <li>GitHub</li>
         </ul>
@@ -47,6 +47,11 @@ export default {
   name: 'App',
   data () {
     return {
+    }
+  },
+  methods: {
+    goLogin() {
+      window.location.href = './login.html';
     }
   },
   mounted () {
@@ -63,7 +68,6 @@ export default {
   top: 0;
   left: 0;
   z-index: 99;
-  background-image: url('../../assets/images/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
