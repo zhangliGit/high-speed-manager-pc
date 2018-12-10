@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const baseConfig = require('./webpack.base.config.js');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./build/utils');
 const devConfig = merge(baseConfig, {
   mode: 'development',
@@ -11,6 +10,9 @@ const devConfig = merge(baseConfig, {
     port: "8090",
     open: true, // 开启浏览器
     hot: true,   // 开启热更新
+  },
+  output: {
+    publicPath: '/'
   },
   /**
    * loadoer配置

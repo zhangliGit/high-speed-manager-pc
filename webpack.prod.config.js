@@ -12,6 +12,9 @@ function resolve (dir) {
 }
 const prodConfig = merge(baseConfig, {
   mode: 'production',
+  output: {
+    publicPath: './'
+  },
   /**
    * loadoer配置
    */

@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production webpack --progress -p --config webpack.prod.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config webpack.dev.config.js"
+    "build": "cross-env NODE_ENV=dev webpack --progress -p --config webpack.prod.config.js",
+    "build--test": "cross-env NODE_ENV=test webpack --progress -p --config webpack.prod.config.js",
+    "build--prod": "cross-env NODE_ENV=prod webpack --progress -p --config webpack.prod.config.js",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --config webpack.dev.config.js",
+    "dev--test": "cross-env NODE_ENV=test webpack-dev-server --progress --config webpack.dev.config.js",
+    "dev--prod": "cross-env NODE_ENV=prod webpack-dev-server --progress --config webpack.dev.config.js"
   },
   "repository": {
     "type": "git",

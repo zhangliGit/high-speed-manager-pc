@@ -14,7 +14,6 @@ module.exports = {
    * 打包输出文件
    */
   output: {
-    publicPath: process.env.NODE_ENV === 'production' ? './' : '/', // 指定html加载资源的路径
     path: path.resolve(__dirname, 'dist'), // 输入打包文件路径
     filename: 'static/js/[name].js', //  多个入口起点输出
     chunkFilename: 'static/js/[name].[chunkhash:8].js', // chunkFilename为按需加载的文件命名 // 「附加分块(additional chunk)」的文件名模板
@@ -96,6 +95,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    /**
+     * 定义全局的变量
+     */
+    new webpack.DefinePlugin({
+      'process.env': {
+        'url_env': JSON.stringify(process.env.NODE_ENV)
+      }
+    })
   ]
 };
