@@ -34,7 +34,7 @@
       <div>
         <ul class="co-flex co-ac tab-ul">
           <li class="active" @click="goLogin">开始使用</li>
-          <li>扫描体验</li>
+          <li class="myClass">扫描体验</li>
           <li>GitHub</li>
         </ul>
       </div>
@@ -68,9 +68,6 @@ export default {
   top: 0;
   left: 0;
   z-index: 99;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
 }
 .side-left {
   padding-left: 60px;

@@ -31,7 +31,8 @@ module.exports = {
      * 配置别名，引入文件时可以使用别名替代，方便引用路径长的文件
      */
     alias: {
-      CSS: './assets/css'
+      CSS: './assets/css',
+      vue: 'vue/dist/vue.js',
     }
   },
   /**

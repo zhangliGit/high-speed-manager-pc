@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const baseConfig = require('./webpack.base.config.js');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const utils = require('./build/utils');
 const devConfig = merge(baseConfig, {
   mode: 'development',
   devServer: {
@@ -11,11 +11,6 @@ const devConfig = merge(baseConfig, {
     port: "8090",
     open: true, // 开启浏览器
     hot: true,   // 开启热更新
-  },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.js',
-    }
   },
   /**
    * loadoer配置
@@ -38,26 +33,7 @@ const devConfig = merge(baseConfig, {
     /**
      * 指定编译的html模板，并把打包后的文件自动的引入
      */
-    new HtmlWebpackPlugin({
-      chunks: ['index'],
-      minify:{
-        removeAttributeQuotes: true,
-        collapseWhitespace: true //折叠空白区域 也就是压缩代码
-      },
-      hash:true, //向html引入的链接后面增加一段hash值,消除缓存
-      filename: 'index.html',
-      template: './index.html'
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['login'],
-      minify:{
-        removeAttributeQuotes: true,
-        collapseWhitespace: true //折叠空白区域 也就是压缩代码
-      },
-      hash:true, //向html引入的链接后面增加一段hash值,消除缓存
-      filename: 'login.html',
-      template: './index.html'
-    })
+    ...utils.devHttpPlugins()
   ]
 });
 

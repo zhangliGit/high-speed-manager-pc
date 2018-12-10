@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pagePath = path.resolve(__dirname,'../src/pages')
 const glob = require('glob')
 const modulesDir = glob.sync(pagePath + '/*')
@@ -21,10 +22,14 @@ exports.devHttpPlugins = function () {
   modulesDir.forEach((file) => {
     const pageDir = file.split('/')[file.split('/').length-1]
     let httpP = new HtmlWebpackPlugin({
-      filename: pageDir + '.html',
-      template: 'index.html',
       chunks: [pageDir],
-      inject: true
+      minify:{
+        removeAttributeQuotes: true,
+        collapseWhitespace: true //折叠空白区域 也就是压缩代码
+      },
+      hash:true, //向html引入的链接后面增加一段hash值,消除缓存
+      filename: pageDir + '.html',
+      template: './index.html'
     })
     devHttpPlugin.push(httpP)
   })
@@ -36,18 +41,14 @@ exports.prodHttpPlugins = function () {
   modulesDir.forEach((file) => {
     const pageDir = file.split('/')[file.split('/').length-1]
     let httpP = new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : path.resolve(__dirname, `../dist/${pageDir}/index.html`),
-      template: 'index.html',
-      chunks: ['manifest', 'vendor', pageDir],
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
+      chunks: ['manifest', 'vendor', pageDir, 'common'],
+      minify:{
+        removeAttributeQuotes: true,
+        collapseWhitespace: true //折叠空白区域 也就是压缩代码
       },
-      chunksSortMode: 'dependency'
+      hash:true, //向html引入的链接后面增加一段hash值,消除缓存
+      filename: `${pageDir}.html`,
+      template: './index.html'
     })
     prodHttpPlugin.push(httpP)
   })

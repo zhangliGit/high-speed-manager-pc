@@ -25,9 +25,6 @@ export default {
   top: 0;
   left: 0;
   z-index: 99;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
 }
 .side-left {
   padding-left: 60px;

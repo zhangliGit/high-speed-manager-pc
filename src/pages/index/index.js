@@ -5,6 +5,7 @@ import App from './App.vue'
 Vue.config.productionTip = false
 require('../../assets/css/base.less')
 require('../../assets/css/flex.css')
+require('../../assets/css/test.css')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

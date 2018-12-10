@@ -28,7 +28,8 @@ const prodConfig = merge(baseConfig, {
           },
           'css-loader',
           'less-loader',
-          'sass-loader'
+          'sass-loader',
+          'postcss-loader'
         ]
       },
     ]
@@ -76,25 +77,7 @@ const prodConfig = merge(baseConfig, {
     /**
      * 指定编译的html模板，并把打包后的文件自动的引入
      */
-    new HtmlWebpackPlugin({
-      chunks:['manifest', 'vendor', 'index'], //chunks:['index'], //html模板自动添加对应chunk的文件, 也就是entry中的key
-      minify:{
-        removeAttributeQuotes: true,
-        collapseWhitespace: true //折叠空白区域 也就是压缩代码
-      },
-      hash:true, //向html引入的链接后面增加一段hash值,消除缓存
-      filename: 'index.html',
-      template: './index.html'
-    }),
-    new HtmlWebpackPlugin({
-      chunks:['manifest', 'vendor', 'login'],
-      minify:{
-        collapseWhitespace:true //折叠空白区域 也就是压缩代码
-      },
-      hash:true, //向html引入的src链接后面增加一段hash值,消除缓存
-      filename: 'login.html',
-      template: './index.html'
-    }),
+    
     /**
      * 提取CSS样式到指定的文件目录
      */
@@ -102,6 +85,7 @@ const prodConfig = merge(baseConfig, {
       filename: utils.assetsPath('css/[name].[contenthash:8].css'),
       chunkFilename: utils.assetsPath('css/[name].[contenthash:8].css')
     }),
+    ...utils.prodHttpPlugins(),
     /**
      * 压缩CSS代码以及结构，且可以去掉重复的css样式
      */
