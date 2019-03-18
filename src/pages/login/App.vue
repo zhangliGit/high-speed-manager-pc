@@ -1,6 +1,17 @@
 <template>
-  <div id="app">
-    我是二级界面
+  <div id="app" class="co-Page co-flex co-ver">
+    <div class="header-con co-flex co-ac co-je">
+      <div class="">
+        <ul>
+          <li @click="menuTo('/')">渠成</li>
+          <li @click="menuTo('/youke')">柚客</li>
+          <li @click="menuTo('/zhuodao')">舟到</li>
+        </ul>
+      </div>
+    </div>
+    <div class="co-f1 co-of co-flex">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -11,54 +22,33 @@ export default {
     return {
     }
   },
+  methods: {
+    menuTo (path) {
+      this.$router.push(`${path}`)
+    }
+  },
   mounted () {
   }
 }
 </script>
 
 <style lang="less">
-#app {
-  color: #333;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-.side-left {
-  padding-left: 60px;
-}
-.text-tip {
-  padding: 15px 0
-}
-.text-tip-indent {
-  padding-top: 20px;
-  text-indent: 30px;
-}
-.co-ui {
-  font-size:40px;
-  padding: 30px 0 50px 0;
-}
-.tab-ul {
-  li {
-    margin-top: 30px;
-    width: 130px;
-    height:40px;
-    line-height: 40px;
-    text-align: center;
-    border: 1px #eee solid;
-    margin-right: 30px;
-    border-radius: 60px;
-    cursor: pointer;
-    &:hover {
-      background: #2d8cf0;
-      color:#fff;
+  .co-Page {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5
+  }
+  .header-con {
+    height: 88px;
+    width: 100%;
+    background: #333;
+    ul li {
+      float: left;
+      padding: 0  15px;
+      color: #fff;
+      cursor: pointer;
     }
   }
-  .active {
-    background: #2d8cf0;
-    color: #fff;
-  }
-}
 </style>
